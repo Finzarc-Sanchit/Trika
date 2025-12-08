@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/logo.ico" />
+  <title>TRIKA | Sound Healing by Sonia Razdan</title>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="TRIKA Sound Sanctuary" />
+  <meta property="og:description"
+    content="Healing through sound, guided by soul. Sound healing services by Sonia Razdan - Sound Therapist & Gong Master." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/images/logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TRIKA_YOGA" />
+  <meta name="twitter:image" content="/assets/images/logo.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Mulish:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ajna-dark': '#1c1917', // stone-900
+            'ajna-light': '#f5f5f4', // stone-100
+            'ajna-accent': '#e7e5e4', // stone-200
+            'ajna-beige': '#F3F0EB',
+            background: 'rgb(var(--background))',
+            foreground: 'rgb(var(--foreground))',
+            card: {
+              DEFAULT: 'rgb(var(--card))',
+              foreground: 'rgb(var(--card-foreground))',
+            },
+            popover: {
+              DEFAULT: 'rgb(var(--popover))',
+              foreground: 'rgb(var(--popover-foreground))',
+            },
+            primary: {
+              DEFAULT: 'rgb(var(--primary))',
+              foreground: 'rgb(var(--primary-foreground))',
+            },
+            secondary: {
+              DEFAULT: 'rgb(var(--secondary))',
+              foreground: 'rgb(var(--secondary-foreground))',
+            },
+            muted: {
+              DEFAULT: 'rgb(var(--muted))',
+              foreground: 'rgb(var(--muted-foreground))',
+            },
+            accent: {
+              DEFAULT: 'rgb(var(--accent))',
+              foreground: 'rgb(var(--accent-foreground))',
+            },
+            destructive: {
+              DEFAULT: 'rgb(var(--destructive))',
+              foreground: 'rgb(var(--destructive-foreground))',
+            },
+            border: 'rgb(var(--border))',
+            input: 'rgb(var(--input))',
+            ring: 'rgb(var(--ring))',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Mulish"', 'sans-serif'],
+          },
+          borderRadius: {
+            lg: 'var(--radius)',
+            md: 'calc(var(--radius) - 2px)',
+            sm: 'calc(var(--radius) - 4px)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --background: 250 250 249;
+      --foreground: 28 25 23;
+      --card: 255 255 255;
+      --card-foreground: 28 25 23;
+      --popover: 255 255 255;
+      --popover-foreground: 28 25 23;
+      --primary: 28 25 23;
+      --primary-foreground: 250 250 249;
+      --secondary: 245 245 244;
+      --secondary-foreground: 28 25 23;
+      --muted: 245 245 244;
+      --muted-foreground: 120 113 108;
+      --accent: 231 229 228;
+      --accent-foreground: 28 25 23;
+      --destructive: 239 68 68;
+      --destructive-foreground: 250 250 249;
+      --border: 231 229 228;
+      --input: 231 229 228;
+      --ring: 28 25 23;
+      --radius: 0.5rem;
+    }
+
+    body {
+      background-color: #FDFBF9;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
