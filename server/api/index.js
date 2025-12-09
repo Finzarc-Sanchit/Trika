@@ -1,5 +1,5 @@
 // Vercel serverless function entry point
-import app from '../server/index.js';
+import app from '../index.js';
 
 export default app;
 
