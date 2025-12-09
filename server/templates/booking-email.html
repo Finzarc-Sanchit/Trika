@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" style="margin:0; padding:0;">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>New Booking Inquiry</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .header {
+            background: #967BB6;
+            color: #ffffff;
+            padding: 16px;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .content {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333333;
+            margin-top: 20px;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .details-table td {
+            padding: 10px 12px;
+            border: 1px solid #eaeaea;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        .details-table td:first-child {
+            background: #F3F0EB;
+            font-weight: 600;
+            width: 35%;
+            color: #1c1917;
+        }
+        .divider {
+            border-top: 1px solid #eaeaea;
+            margin: 24px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #78716C;
+            margin-top: 16px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 16px;
+                margin: 10px;
+            }
+            .header h1 {
+                font-size: 18px;
+            }
+            .details-table td {
+                display: block;
+                width: 100%;
+            }
+            .details-table td:first-child {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Booking Inquiry</h1>
+        </div>
+        <div class="content">
+            <p>
+                You've received a new booking inquiry on your website. Here are the details:
+            </p>
+            <table class="details-table">
+                <tr>
+                    <td>Name</td>
+                    <td>{{name}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>{{phone}}</td>
+                </tr>
+                <tr>
+                    <td>Service Interest</td>
+                    <td>{{serviceInterest}}</td>
+                </tr>
+                <tr>
+                    <td>Message</td>
+                    <td>{{message}}</td>
+                </tr>
+            </table>
+            <div class="divider"></div>
+            <p>
+                Best regards,<br />
+                <strong>Trika Sound Sanctuary Bot</strong>
+            </p>
+        </div>
+        <div class="footer">
+            © {{year}} Trika Sound Sanctuary. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

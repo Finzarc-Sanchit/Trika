@@ -27,13 +27,13 @@ const Hero: React.FC<HeroProps> = ({ openBooking }) => {
         {/* Text Section (Right) */}
         <div className="lg:col-span-6 flex flex-col justify-center lg:pl-12">
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-[#2A2624] mb-8">
-            Healing through sound, guided by soul.
+            <span className="text-[#967BB6]">Healing</span> through <span className="text-[#967BB6]">sound</span>, guided by <span className="text-[#967BB6]">soul</span>.
           </h1>
           
           <div className="flex items-center space-x-6">
             <button 
               onClick={openBooking}
-              className="text-[#2A2624] font-medium text-lg border-b border-[#2A2624] pb-1 hover:text-stone-600 hover:border-stone-400 transition-all"
+              className="text-[#967BB6] font-medium text-lg border-b-2 border-[#967BB6] pb-1 hover:text-[#7A5F9F] hover:border-[#7A5F9F] transition-all"
             >
               Book A Session
             </button>

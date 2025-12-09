@@ -94,9 +94,9 @@ export function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16 text-center">
           <span className="uppercase tracking-widest text-xs font-bold text-stone-500 mb-4 block">Client Stories</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">WHAT OUR CLIENTS SAY</h2>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">WHAT OUR <span className="text-[#967BB6]">CLIENTS</span> SAY</h2>
           <p className="text-stone-600 max-w-2xl mx-auto leading-relaxed">
-            Real experiences from people who have transformed their lives through sound healing at Trika.
+            Real experiences from people who have <span className="text-[#967BB6] font-semibold">transformed their lives</span> through sound healing at Trika.
           </p>
         </div>
         <Testimonials 

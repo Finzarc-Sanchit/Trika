@@ -7,17 +7,17 @@ const Founder: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="order-2 md:order-1">
           <span className="uppercase tracking-widest text-xs font-bold text-stone-500 mb-4 block">The Founder</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">SONIA RAZDAN</h2>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8"><span className="text-[#967BB6]">SONIA RAZDAN</span></h2>
           <p className="text-stone-600 leading-relaxed text-lg font-light mb-6">
-            Founder – Trika Sound Sanctuary
+            Founder – <span className="text-[#967BB6] font-semibold">Trika Sound Sanctuary</span>
           </p>
           <p className="text-stone-600 leading-relaxed text-lg font-light mb-6">
-            Sound Therapist | Gong Master
+            <span className="text-[#967BB6] font-semibold">Sound Therapist</span> | <span className="text-[#967BB6] font-semibold">Gong Master</span>
           </p>
           <p className="text-stone-600 leading-relaxed text-lg font-light mb-8">
-            Sonia Razdan is a certified sound healer and gong master dedicated to healing through sound, guided by soul. She blends science with spirituality, offering clinical organ therapy and trauma-sensitive sound healing journeys. With expertise in chakra healing, brainwave rebalancing, and energetic strengthening, Sonia creates transformative experiences for individuals and communities.
+            Sonia Razdan is a certified <span className="text-[#967BB6] font-semibold">sound healer</span> and <span className="text-[#967BB6] font-semibold">gong master</span> dedicated to healing through sound, guided by soul. She blends <span className="text-[#967BB6] font-semibold">science with spirituality</span>, offering <span className="text-[#967BB6] font-semibold">clinical organ therapy</span> and <span className="text-[#967BB6] font-semibold">trauma-sensitive</span> sound healing journeys. With expertise in <span className="text-[#967BB6] font-semibold">chakra healing</span>, <span className="text-[#967BB6] font-semibold">brainwave rebalancing</span>, and <span className="text-[#967BB6] font-semibold">energetic strengthening</span>, Sonia creates transformative experiences for individuals and communities.
           </p>
-          <button className="bg-[#1c1917] text-white px-8 py-4 text-sm tracking-widest hover:bg-stone-700 transition-colors">
+          <button className="bg-[#967BB6] text-white px-8 py-4 text-sm tracking-widest hover:bg-[#7A5F9F] transition-colors">
             Read Full Bio
           </button>
         </div>

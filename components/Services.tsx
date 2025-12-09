@@ -98,12 +98,12 @@ const Services: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16 text-center">
           <span className="uppercase tracking-widest text-xs font-bold text-stone-500 mb-4 block">What I Offer</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">OUR SERVICES</h2>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">OUR <span className="text-[#967BB6]">SERVICES</span></h2>
           <p className="text-stone-600 max-w-2xl mx-auto mb-4">
-            A blend of science + spirituality. Clinical organ therapy, trauma-sensitive approach, curated sound journeys, and gong mastery.
+            A blend of <span className="text-[#967BB6] font-semibold">science + spirituality</span>. <span className="text-[#967BB6] font-semibold">Clinical organ therapy</span>, <span className="text-[#967BB6] font-semibold">trauma-sensitive approach</span>, curated sound journeys, and gong mastery.
           </p>
           <p className="text-stone-600 max-w-2xl mx-auto text-sm">
-            <strong>Supports:</strong> Endocrine, hormonal, autoimmune, neurological, emotional conditions including anxiety, depression, addictions, PCOS, thyroid, gut issues, and Alzheimer's support.
+            <strong className="text-[#967BB6]">Supports:</strong> Endocrine, hormonal, autoimmune, neurological, emotional conditions including anxiety, depression, addictions, PCOS, thyroid, gut issues, and Alzheimer's support.
           </p>
         </div>
 
@@ -115,7 +115,7 @@ const Services: React.FC = () => {
             return (
               <div key={category} id={`services-${category.toLowerCase()}`}>
                 <h3 className="font-serif text-3xl md:text-4xl text-[#1c1917] mb-8 uppercase tracking-wide">
-                  {category}
+                  <span className="text-[#967BB6]">{category}</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {categoryServices.map((service) => (
@@ -129,7 +129,7 @@ const Services: React.FC = () => {
                         <div className="absolute inset-0 bg-black/10"></div>
                       </div>
                       <div className="flex justify-between items-baseline mb-2">
-                        <h4 className="font-serif text-2xl text-[#1c1917]">{service.title}</h4>
+                        <h4 className="font-serif text-2xl text-[#967BB6]">{service.title}</h4>
                         {service.price > 0 && <span className="text-stone-500 font-serif italic">${service.price}</span>}
                       </div>
                       <p className="text-stone-600 text-sm leading-relaxed mb-4">{service.description}</p>

@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { X } from 'lucide-react';
+import { createBooking } from '../lib/api/booking';
 
 interface BookingModalProps {
   onClose: () => void;
@@ -32,6 +33,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,7 +41,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
   };
 
   const validatePhone = (phone: string): boolean => {
-    if (!phone) return true; // Phone is optional
+    if (!phone) return false; // Phone is required
     // Indian phone number: 10 digits, optionally prefixed with +91
     const cleaned = phone.replace(/\D/g, '');
     if (cleaned.startsWith('91') && cleaned.length === 12) {
@@ -65,8 +67,10 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
       newErrors.email = 'Please enter a valid email address';
     }
 
-    // Phone validation (optional but must be valid if provided)
-    if (formData.phone && !validatePhone(formData.phone)) {
+    // Phone validation (required)
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!validatePhone(formData.phone)) {
       newErrors.phone = 'Please enter a valid 10-digit Indian phone number';
     }
 
@@ -82,10 +86,15 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
+
     // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+
+    // Clear submit error when user starts typing
+    if (submitError) {
+      setSubmitError(null);
     }
   };
 
@@ -113,8 +122,10 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
       }
     }
 
-    if (field === 'phone' && formData.phone) {
-      if (!validatePhone(formData.phone)) {
+    if (field === 'phone') {
+      if (!formData.phone.trim()) {
+        newErrors.phone = 'Phone number is required';
+      } else if (!validatePhone(formData.phone)) {
         newErrors.phone = 'Please enter a valid 10-digit Indian phone number';
       } else {
         delete newErrors.phone;
@@ -140,18 +151,36 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
     }
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate API call
     try {
-      // Here you would typically send the data to your backend
-      // await fetch('/api/leads', { method: 'POST', body: JSON.stringify(formData) });
-      
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
-      
-      setIsSubmitted(true);
+      const response = await createBooking({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        serviceInterest: formData.serviceInterest,
+        message: formData.message.trim() || undefined,
+      });
+
+      if (response.success) {
+        setIsSubmitted(true);
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          serviceInterest: '',
+          message: '',
+        });
+      } else {
+        setSubmitError(response.error || 'Failed to submit booking. Please try again.');
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('There was an error submitting your information. Please try again.');
+      const errorMessage = error instanceof Error
+        ? error.message
+        : 'There was an error submitting your information. Please try again.';
+      setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -161,7 +190,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
     return (
       <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-sm">
         <div className="bg-[#FDFBF9] w-full max-w-lg shadow-2xl relative animate-in fade-in zoom-in duration-300">
-          <button 
+          <button
             onClick={onClose}
             className="absolute top-4 right-4 text-stone-500 hover:text-stone-900 transition-colors"
           >
@@ -180,8 +209,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
             <p className="text-stone-600 font-light mb-6 leading-relaxed text-lg">
               We've received your inquiry. Sonia or her team will reach out to you within 24 hours to discuss your sound healing journey.
             </p>
-            <button 
-              onClick={onClose} 
+            <button
+              onClick={onClose}
               className="bg-[#1c1917] text-white px-8 py-3 tracking-wider hover:bg-stone-800 transition-colors"
             >
               Return to Home
@@ -195,7 +224,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-sm">
       <div className="bg-[#FDFBF9] w-full max-w-lg shadow-2xl relative animate-in fade-in zoom-in duration-300 max-h-[90vh] overflow-y-auto">
-        <button 
+        <button
           onClick={onClose}
           className="absolute top-4 right-4 text-stone-500 hover:text-stone-900 transition-colors z-10"
         >
@@ -219,9 +248,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
                 value={formData.name}
                 onChange={handleChange}
                 onBlur={() => handleBlur('name')}
-                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 placeholder-stone-400/50 transition-all ${
-                  errors.name ? 'ring-2 ring-red-500' : ''
-                }`}
+                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 placeholder-stone-400/50 transition-all ${errors.name ? 'ring-2 ring-red-500' : ''
+                  }`}
                 placeholder="Priya Sharma"
               />
               {errors.name && (
@@ -241,9 +269,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={() => handleBlur('email')}
-                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 placeholder-stone-400/50 transition-all ${
-                  errors.email ? 'ring-2 ring-red-500' : ''
-                }`}
+                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 placeholder-stone-400/50 transition-all ${errors.email ? 'ring-2 ring-red-500' : ''
+                  }`}
                 placeholder="priya@example.com"
               />
               {errors.email && (
@@ -254,7 +281,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
             {/* Phone Field */}
             <div>
               <label htmlFor="phone" className="block text-xs uppercase tracking-widest text-stone-500 mb-2">
-                Phone Number
+                Phone Number <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
@@ -263,9 +290,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
                 value={formData.phone}
                 onChange={handleChange}
                 onBlur={() => handleBlur('phone')}
-                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 placeholder-stone-400/50 transition-all ${
-                  errors.phone ? 'ring-2 ring-red-500' : ''
-                }`}
+                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 placeholder-stone-400/50 transition-all ${errors.phone ? 'ring-2 ring-red-500' : ''
+                  }`}
                 placeholder="9876543210"
               />
               {errors.phone && (
@@ -284,9 +310,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
                 value={formData.serviceInterest}
                 onChange={handleChange}
                 onBlur={() => handleBlur('serviceInterest')}
-                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 transition-all font-light ${
-                  errors.serviceInterest ? 'ring-2 ring-red-500' : ''
-                }`}
+                className={`w-full bg-[#F3F0EB] border-none p-3 text-stone-900 focus:ring-2 focus:ring-stone-400 transition-all font-light ${errors.serviceInterest ? 'ring-2 ring-red-500' : ''
+                  }`}
               >
                 <option value="">Select a service...</option>
                 <option value="chakra-therapy">Chakra Therapy</option>
@@ -319,6 +344,13 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
                 placeholder="Tell us about your interest in sound healing, any specific concerns, or questions you may have..."
               />
             </div>
+
+            {/* Error Message */}
+            {submitError && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mt-4">
+                <p className="text-sm">{submitError}</p>
+              </div>
+            )}
 
             {/* Submit Button */}
             <button

@@ -16,9 +16,9 @@ const WhoBenefits: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16 text-center">
           <span className="uppercase tracking-widest text-xs font-bold text-stone-500 mb-4 block">For Everyone</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">WHO BENEFITS</h2>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">WHO <span className="text-[#967BB6]">BENEFITS</span></h2>
           <p className="text-stone-600 max-w-2xl mx-auto">
-            Sound healing offers profound benefits for a wide range of individuals seeking holistic wellness and transformation.
+            Sound healing offers <span className="text-[#967BB6] font-semibold">profound benefits</span> for a wide range of individuals seeking <span className="text-[#967BB6] font-semibold">holistic wellness and transformation</span>.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ const WhoBenefits: React.FC = () => {
               className="bg-white p-6 border border-stone-200 hover:border-stone-300 transition-colors"
             >
               <div className="flex items-start gap-3">
-                <span className="text-[#A69C8E] text-xl mt-1">✦</span>
+                <span className="text-[#967BB6] text-xl mt-1">✦</span>
                 <span className="text-stone-700 font-light text-lg">{benefit}</span>
               </div>
             </div>

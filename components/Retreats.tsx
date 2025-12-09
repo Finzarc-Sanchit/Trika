@@ -14,7 +14,7 @@ const Retreats: React.FC<RetreatsProps> = ({ openBooking }) => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative">
         <div className="mb-16 text-center md:text-left">
            <span className="uppercase tracking-widest text-xs font-bold text-stone-500 mb-4 block">Immersive Experiences</span>
-           <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917]">Upcoming Retreats</h2>
+           <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917]">Upcoming <span className="text-[#967BB6]">Retreats</span></h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -32,36 +32,36 @@ const Retreats: React.FC<RetreatsProps> = ({ openBooking }) => {
 
           {/* Retreat Info */}
           <div className="lg:pl-8">
-            <h3 className="font-serif text-3xl md:text-4xl text-[#1c1917] mb-4">Retreats & Festivals</h3>
-            <p className="text-stone-500 italic mb-8 font-serif">Transformative sound healing experiences in sacred spaces.</p>
+            <h3 className="font-serif text-3xl md:text-4xl text-[#967BB6] mb-4">Retreats & Festivals</h3>
+            <p className="text-stone-500 italic mb-8 font-serif"><span className="text-[#967BB6]">Transformative</span> sound healing experiences in sacred spaces.</p>
             
             <p className="text-stone-600 leading-relaxed text-lg font-light mb-6">
-              Join Sonia Razdan for immersive retreat experiences and festival appearances. These gatherings offer deep transformation through collective sound healing, combining individual and community healing spaces.
+              Join Sonia Razdan for <span className="text-[#967BB6] font-semibold">immersive retreat experiences</span> and festival appearances. These gatherings offer <span className="text-[#967BB6] font-semibold">deep transformation</span> through collective sound healing, combining individual and community healing spaces.
             </p>
             
             <ul className="space-y-3 mb-8 text-stone-600 font-light">
               <li className="flex items-start gap-3">
-                <span className="text-[#A69C8E] text-xl">✦</span>
-                <span>Group Sound Baths & Collective Healing</span>
+                <span className="text-[#967BB6] text-xl">✦</span>
+                <span><span className="text-[#967BB6] font-semibold">Group Sound Baths</span> & Collective Healing</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#A69C8E] text-xl">✦</span>
-                <span>Gong Mastery Sessions</span>
+                <span className="text-[#967BB6] text-xl">✦</span>
+                <span><span className="text-[#967BB6] font-semibold">Gong Mastery</span> Sessions</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#A69C8E] text-xl">✦</span>
-                <span>Curated Sound Journeys</span>
+                <span className="text-[#967BB6] text-xl">✦</span>
+                <span><span className="text-[#967BB6] font-semibold">Curated Sound Journeys</span></span>
               </li>
                <li className="flex items-start gap-3">
-                <span className="text-[#A69C8E] text-xl">✦</span>
-                <span>Trauma-Sensitive Approach</span>
+                <span className="text-[#967BB6] text-xl">✦</span>
+                <span><span className="text-[#967BB6] font-semibold">Trauma-Sensitive</span> Approach</span>
               </li>
             </ul>
 
             <div className="flex items-center gap-8">
               <button 
                 onClick={openBooking}
-                className="bg-[#1c1917] text-white px-8 py-4 text-sm tracking-widest hover:bg-stone-700 transition-colors"
+                className="bg-[#967BB6] text-white px-8 py-4 text-sm tracking-widest hover:bg-[#7A5F9F] transition-colors"
               >
                 Book Your Experience
               </button>

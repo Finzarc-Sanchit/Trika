@@ -194,7 +194,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
         <div className="hidden lg:flex items-center space-x-6">
           <button
             onClick={openBooking}
-            className="bg-[#3D3336] text-white px-6 py-2.5 text-sm font-medium tracking-wider hover:bg-stone-800 transition-colors"
+            className="bg-[#967BB6] text-white px-6 py-2.5 text-sm font-medium tracking-wider hover:bg-[#7A5F9F] transition-colors"
           >
             Book A Session
           </button>
