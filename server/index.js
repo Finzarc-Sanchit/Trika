@@ -22,6 +22,13 @@ app.get('/', (req, res) => {
     });
 });
 
+// Initialize database connection (for Vercel serverless - connection is cached)
+if (process.env.VERCEL === '1') {
+    connectDatabase().catch(err => {
+        logger.error('Database connection failed on startup:', err);
+    });
+}
+
 // API routes
 app.use('/api', routes);
 
@@ -29,21 +36,26 @@ app.use('/api', routes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// Start server
-const startServer = async () => {
-    try {
-        // Connect to database
-        await connectDatabase();
+// Export app for Vercel serverless functions
+export default app;
 
-        // Start listening
-        app.listen(config.port, () => {
-            logger.info(`Server is running on http://localhost:${config.port}`);
-            logger.info(`Environment: ${config.nodeEnv}`);
-        });
-    } catch (error) {
-        logger.error('Failed to start server:', error);
-        process.exit(1);
-    }
-};
+// Start server only if not in Vercel environment
+if (process.env.VERCEL !== '1') {
+    const startServer = async () => {
+        try {
+            // Connect to database
+            await connectDatabase();
 
-startServer();
+            // Start listening
+            app.listen(config.port, () => {
+                logger.info(`Server is running on http://localhost:${config.port}`);
+                logger.info(`Environment: ${config.nodeEnv}`);
+            });
+        } catch (error) {
+            logger.error('Failed to start server:', error);
+            process.exit(1);
+        }
+    };
+
+    startServer();
+}

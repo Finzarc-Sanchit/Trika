@@ -10,6 +10,12 @@ export const connectDatabase = async () => {
       return;
     }
 
+    // Check if already connected (for Vercel serverless functions)
+    if (mongoose.connection.readyState === 1) {
+      logger.info('Database already connected');
+      return;
+    }
+
     await mongoose.connect(config.mongodbUri);
     logger.info('Database connected successfully');
     
@@ -23,7 +29,10 @@ export const connectDatabase = async () => {
     });
   } catch (error) {
     logger.error('Database connection error:', error);
-    process.exit(1);
+    // Don't exit process in Vercel serverless environment
+    if (process.env.VERCEL !== '1') {
+      process.exit(1);
+    }
   }
 };
 
