@@ -61,10 +61,11 @@ export function Testimonials({
             .map((testimonial, index) => (
               <Card
                 key={index}
-                className="h-auto p-6 bg-[#F3F0EB] border border-stone-200"
+                className="h-auto p-6 bg-[#F3F0EB] border border-stone-200 transition-all duration-300 hover:shadow-lg hover:shadow-stone-300/30 hover:-translate-y-1 hover:border-[#967BB6]/30 group cursor-pointer"
+                style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
               >
                 <div className="flex items-center mb-5">
-                  <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
@@ -92,7 +93,7 @@ export function Testimonials({
             <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
               <button 
                 onClick={() => setShowAll(true)}
-                className="bg-[#1c1917] text-white px-8 py-4 text-sm tracking-widest hover:bg-stone-700 transition-colors"
+                className="bg-[#1c1917] text-white px-8 py-4 text-sm tracking-widest hover:bg-stone-700 transition-all duration-300 hover:shadow-lg hover:shadow-stone-900/20 hover:scale-105 active:scale-95"
               >
                 Load More
               </button>

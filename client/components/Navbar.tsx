@@ -108,13 +108,13 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
         <div className="flex-shrink-0 z-[70] relative">
-          <a href="#home" className="flex items-center gap-3">
+          <a href="#home" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-105">
             <img
               src="/assets/images/logo.png"
               alt="Trika Sound Sanctuary Logo"
-              className="h-10 w-auto"
+              className="h-10 w-auto transition-transform duration-300 group-hover:rotate-3"
             />
-            <span className="font-serif text-2xl tracking-widest font-bold text-ajna-dark uppercase hidden sm:block">
+            <span className="font-serif text-2xl tracking-widest font-bold text-ajna-dark uppercase hidden sm:block transition-colors duration-300 group-hover:text-[#967BB6]">
               TRIKA
             </span>
           </a>
@@ -126,9 +126,10 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
             <a
               key={item.label}
               href={item.href}
-              className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors tracking-wide"
+              className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-all duration-300 tracking-wide relative group"
             >
               {item.label}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#967BB6] transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
 
@@ -194,7 +195,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
         <div className="hidden lg:flex items-center space-x-6">
           <button
             onClick={openBooking}
-            className="bg-[#967BB6] text-white px-6 py-2.5 text-sm font-medium tracking-wider hover:bg-[#7A5F9F] transition-colors"
+            className="bg-[#967BB6] text-white px-6 py-2.5 text-sm font-medium tracking-wider hover:bg-[#7A5F9F] transition-all duration-300 hover:shadow-lg hover:shadow-[#967BB6]/30 hover:scale-105 active:scale-95"
           >
             Book A Session
           </button>
@@ -202,10 +203,10 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden z-[70] text-stone-800 relative"
+          className="lg:hidden z-[70] text-stone-800 relative transition-transform duration-300 hover:scale-110 active:scale-95"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMobileMenuOpen ? <X size={28} className="transition-transform duration-300 rotate-90" /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -222,7 +223,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
               key={item.label}
               href={item.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-2xl font-serif text-stone-800 hover:text-stone-500"
+              className="text-2xl font-serif text-stone-800 hover:text-[#967BB6] transition-all duration-300 transform hover:scale-105"
             >
               {item.label}
             </a>
@@ -249,7 +250,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
                       setIsMobileMenuOpen(false);
                       setIsServicesDropdownOpen(false);
                     }}
-                    className="text-lg font-serif text-stone-600 hover:text-stone-800"
+                    className="text-lg font-serif text-stone-600 hover:text-[#967BB6] transition-all duration-300 transform hover:scale-105"
                   >
                     {category.title}
                   </a>
@@ -263,7 +264,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
               openBooking();
               setIsMobileMenuOpen(false);
             }}
-            className="mt-8 text-lg underline decoration-1 underline-offset-4"
+            className="mt-8 text-lg underline decoration-1 underline-offset-4 text-[#967BB6] hover:text-[#7A5F9F] transition-all duration-300 transform hover:scale-105"
           >
             Book A Session
           </button>

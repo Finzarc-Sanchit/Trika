@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { X } from 'lucide-react';
 import { createBooking } from '../lib/api/booking';
 
-interface BookingModalProps {
+interface InquiryModalProps {
   onClose: () => void;
 }
 
@@ -21,7 +21,7 @@ interface FormErrors {
   serviceInterest?: string;
 }
 
-const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
+const InquiryModal: React.FC<InquiryModalProps> = ({ onClose }) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -367,4 +367,4 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose }) => {
   );
 };
 
-export default BookingModal;
+export default InquiryModal;

@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const TheProblem: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     const struggles = [
         {
             title: 'Chronic Stress',
@@ -25,7 +49,7 @@ const TheProblem: React.FC = () => {
     ];
 
     return (
-        <section id="problem" className="py-24 px-6 md:px-12 relative overflow-hidden">
+        <section ref={sectionRef} id="problem" className={`py-24 px-6 md:px-12 relative overflow-hidden ${isVisible ? 'animate-in fade-in' : 'opacity-0'}`}>
             {/* Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#967BB6]/5 via-[#F3F0EB] to-white -z-10"></div>
 
@@ -55,10 +79,11 @@ const TheProblem: React.FC = () => {
                     {struggles.map((struggle, index) => (
                         <div
                             key={index}
-                            className="bg-white/80 backdrop-blur-sm p-8 rounded-lg hover:bg-white transition-all"
+                            className={`bg-white/80 backdrop-blur-sm p-8 rounded-lg hover:bg-white transition-all duration-300 hover:shadow-lg hover:shadow-stone-200/50 hover:-translate-y-1 ${isVisible ? 'animate-in fade-in-up' : 'opacity-0'}`}
+                            style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
                         >
                             {/* Number Indicator */}
-                            <div className="w-12 h-12 rounded-full bg-[#967BB6]/10 flex items-center justify-center text-[#967BB6] mb-6">
+                            <div className="w-12 h-12 rounded-full bg-[#967BB6]/10 flex items-center justify-center text-[#967BB6] mb-6 transition-transform duration-300 hover:scale-110 hover:bg-[#967BB6]/20">
                                 <span className="font-serif text-2xl font-bold">{index + 1}</span>
                             </div>
 

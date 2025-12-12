@@ -78,11 +78,11 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSignUp, onForgotPassword }) => 
           // Store token in localStorage
           setToken(token);
 
-          // Redirect to home or dashboard
-          navigate('/');
+          // Redirect to dashboard
+          navigate('/dashboard');
         } else {
           // If no token but success, still redirect (token might be handled elsewhere)
-          navigate('/');
+          navigate('/dashboard');
         }
       } else {
         setLoginError(response.error || response.message || 'Login failed. Please try again.');

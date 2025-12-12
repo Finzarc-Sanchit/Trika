@@ -11,11 +11,15 @@ import WhatMakesUnique from '../components/WhatMakesUnique';
 import TestimonialsSection from '../components/TestimonialsSection';
 import Retreats from '../components/Retreats';
 import Footer from '../components/Footer';
-import BookingModal from '../components/BookingModal';
+import InquiryModal from '../components/InquiryModal';
+import PaymentSessionModal from '../components/PaymentSessionModal';
+import PaymentRetreatModal from '../components/PaymentRetreatModal';
 
 const Home: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const [isSessionBookingOpen, setIsSessionBookingOpen] = useState(false);
+  const [isRetreatBookingOpen, setIsRetreatBookingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,29 +30,37 @@ const Home: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const openBooking = () => setIsBookingOpen(true);
-  const closeBooking = () => setIsBookingOpen(false);
+  const openInquiry = () => setIsInquiryOpen(true);
+  const closeInquiry = () => setIsInquiryOpen(false);
+  
+  const openSessionBooking = () => setIsSessionBookingOpen(true);
+  const closeSessionBooking = () => setIsSessionBookingOpen(false);
+  
+  const openRetreatBooking = () => setIsRetreatBookingOpen(true);
+  const closeRetreatBooking = () => setIsRetreatBookingOpen(false);
 
   return (
     <div className="min-h-screen font-sans text-stone-800 antialiased overflow-x-hidden selection:bg-stone-200">
-      <Navbar isScrolled={isScrolled} openBooking={openBooking} />
+      <Navbar isScrolled={isScrolled} openBooking={openSessionBooking} />
 
       <main>
-        <Hero openBooking={openBooking} />
+        <Hero openBooking={openSessionBooking} />
         <TheProblem />
         <Philosophy />
-        <StatsSection openBooking={openBooking} />
+        <StatsSection openBooking={openSessionBooking} />
         <Founder />
-        <Services />
+        <Services openSessionBooking={openSessionBooking} />
         <WhoBenefits />
         <WhatMakesUnique />
         <TestimonialsSection />
-        <Retreats openBooking={openBooking} />
+        <Retreats openRetreatBooking={openRetreatBooking} />
       </main>
 
       <Footer />
 
-      {isBookingOpen && <BookingModal onClose={closeBooking} />}
+      {isInquiryOpen && <InquiryModal onClose={closeInquiry} />}
+      {isSessionBookingOpen && <PaymentSessionModal onClose={closeSessionBooking} />}
+      {isRetreatBookingOpen && <PaymentRetreatModal onClose={closeRetreatBooking} />}
     </div>
   );
 };

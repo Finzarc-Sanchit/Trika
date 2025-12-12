@@ -44,19 +44,19 @@ const Footer: React.FC = () => {
         <div>
           <h4 className="font-serif text-lg mb-6">Explore</h4>
           <ul className="space-y-3 font-light text-sm text-stone-400">
-            <li><a href="#" className="hover:text-white transition-colors">Our Story</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Services</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Retreats</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Shop</a></li>
+            <li><a href="#" className="hover:text-white transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>Our Story</a></li>
+            <li><a href="#" className="hover:text-white transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>Services</a></li>
+            <li><a href="#" className="hover:text-white transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>Retreats</a></li>
+            <li><a href="#" className="hover:text-white transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>Shop</a></li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-serif text-lg mb-6">Connect</h4>
           <ul className="space-y-3 font-light text-sm text-stone-400">
-            <li><a href="https://www.instagram.com/trika_yoga" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram: @TRIKA_YOGA</a></li>
-            <li><a href={emailLink} onClick={handleEmailClick} className="hover:text-white transition-colors">Email</a></li>
-            <li><a href={whatsappLink1} onClick={(e) => handleWhatsAppClick(e, '919152482025')} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/trika_yoga" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>Instagram: @TRIKA_YOGA</a></li>
+            <li><a href={emailLink} onClick={handleEmailClick} className="hover:text-white transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>Email</a></li>
+            <li><a href={whatsappLink1} onClick={(e) => handleWhatsAppClick(e, '919152482025')} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>WhatsApp</a></li>
           </ul>
         </div>
 
@@ -76,8 +76,8 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-stone-700 flex flex-col md:flex-row justify-between text-xs text-stone-500 font-light">
         <p>&copy; {new Date().getFullYear()} Trika Sound Sanctuary. All rights reserved.</p>
         <div className="space-x-4 mt-4 md:mt-0">
-          <a href="#" className="hover:text-stone-300">Privacy Policy</a>
-          <a href="#" className="hover:text-stone-300">Terms of Service</a>
+          <a href="#" className="hover:text-stone-300 transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-stone-300 transition-all duration-300 group-hover:w-full"></span>Privacy Policy</a>
+          <a href="#" className="hover:text-stone-300 transition-all duration-300 relative group inline-block"><span className="absolute bottom-0 left-0 w-0 h-px bg-stone-300 transition-all duration-300 group-hover:w-full"></span>Terms of Service</a>
         </div>
       </div>
     </footer>

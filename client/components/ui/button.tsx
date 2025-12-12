@@ -5,19 +5,19 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-95",
   {
     variants: {
       variant: {
-        default: "bg-[#1c1917] text-stone-50 hover:bg-stone-800",
+        default: "bg-[#1c1917] text-stone-50 hover:bg-stone-800 hover:shadow-lg hover:shadow-stone-900/20 hover:scale-105",
         destructive:
-          "bg-red-600 text-white hover:bg-red-700",
+          "bg-red-600 text-white hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:scale-105",
         outline:
-          "border border-stone-300 bg-white hover:bg-stone-50 hover:text-stone-900",
+          "border border-stone-300 bg-white hover:bg-stone-50 hover:text-stone-900 hover:shadow-md hover:border-stone-400 hover:scale-105",
         secondary:
-          "bg-stone-100 text-stone-900 hover:bg-stone-200",
-        ghost: "hover:bg-stone-100 hover:text-stone-900",
-        link: "text-[#1c1917] underline-offset-4 hover:underline",
+          "bg-stone-100 text-stone-900 hover:bg-stone-200 hover:shadow-md hover:scale-105",
+        ghost: "hover:bg-stone-100 hover:text-stone-900 hover:scale-105",
+        link: "text-[#1c1917] underline-offset-4 hover:underline transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",

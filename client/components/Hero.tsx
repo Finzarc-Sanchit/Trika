@@ -12,7 +12,7 @@ const Hero: React.FC<HeroProps> = ({ openBooking }) => {
         
         {/* Image Section (Left) */}
         <div className="lg:col-span-6 relative">
-          <div className="relative overflow-hidden rounded-t-[10rem] aspect-[4/5] lg:aspect-[4/5] bg-stone-200">
+          <div className="relative overflow-hidden rounded-t-[10rem] aspect-[4/5] lg:aspect-[4/5] bg-stone-200 group">
              {/* High quality image of a woman playing crystal bowls */}
             <img 
               src="/assets/images/image30.jpeg" 
@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ openBooking }) => {
               className="w-full h-full object-cover grayscale-[10%] contrast-[95%]"
             />
             {/* Soft decorative circle */}
-            <div className="absolute -z-10 top-20 -left-20 w-64 h-64 bg-[#EBE7E0] rounded-full blur-3xl opacity-60"></div>
+            <div className="absolute -z-10 top-20 -left-20 w-64 h-64 bg-[#EBE7E0] rounded-full blur-3xl opacity-60 transition-all duration-700 group-hover:opacity-80 group-hover:scale-110"></div>
           </div>
         </div>
 
@@ -33,9 +33,10 @@ const Hero: React.FC<HeroProps> = ({ openBooking }) => {
           <div className="flex items-center space-x-6">
             <button 
               onClick={openBooking}
-              className="text-[#967BB6] font-medium text-lg border-b-2 border-[#967BB6] pb-1 hover:text-[#7A5F9F] hover:border-[#7A5F9F] transition-all"
+              className="text-[#967BB6] font-medium text-lg border-b-2 border-[#967BB6] pb-1 hover:text-[#7A5F9F] hover:border-[#7A5F9F] transition-all duration-300 relative group"
             >
               Book A Session
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#7A5F9F] transition-all duration-300 group-hover:w-full"></span>
             </button>
           </div>
         </div>

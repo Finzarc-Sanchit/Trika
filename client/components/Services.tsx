@@ -79,7 +79,11 @@ const services: Service[] = [
   }
 ];
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  openSessionBooking: () => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ openSessionBooking }) => {
   // Group services by category
   const groupedServices = services.reduce((acc, service) => {
     const category = service.category || 'OTHER';
@@ -98,7 +102,7 @@ const Services: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16 text-center">
           <span className="uppercase tracking-widest text-xs font-bold text-stone-500 mb-4 block">What I Offer</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8">OUR <span className="text-[#967BB6]">SERVICES</span></h2>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#1c1917] mb-8 transition-colors duration-300 hover:text-[#967BB6]">OUR <span className="text-[#967BB6]">SERVICES</span></h2>
           <p className="text-stone-600 max-w-2xl mx-auto mb-4">
             A blend of <span className="text-[#967BB6] font-semibold">science + spirituality</span>. <span className="text-[#967BB6] font-semibold">Clinical organ therapy</span>, <span className="text-[#967BB6] font-semibold">trauma-sensitive approach</span>, curated sound journeys, and gong mastery.
           </p>
@@ -118,23 +122,36 @@ const Services: React.FC = () => {
                   <span className="text-[#967BB6]">{category}</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {categoryServices.map((service) => (
-                    <div key={service.id}>
-                      <div className="overflow-hidden aspect-[3/4] mb-6 relative">
+                  {categoryServices.map((service, index) => (
+                    <div 
+                      key={service.id}
+                      className="group cursor-pointer"
+                      style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
+                    >
+                      <div className="overflow-hidden aspect-[3/4] mb-6 relative rounded-lg">
                         <img
                           src={service.image}
                           alt={service.title}
                           className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-black/10"></div>
+                        <div className="absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:bg-black/5"></div>
                       </div>
                       <div className="flex justify-between items-baseline mb-2">
-                        <h4 className="font-serif text-2xl text-[#967BB6]">{service.title}</h4>
-                        {service.price > 0 && <span className="text-stone-500 font-serif italic">${service.price}</span>}
+                        <h4 className="font-serif text-2xl text-[#967BB6] transition-colors duration-300 group-hover:text-[#7A5F9F]">{service.title}</h4>
+                        {service.price > 0 && <span className="text-stone-500 font-serif italic">₹{service.price}</span>}
                       </div>
                       <p className="text-stone-600 text-sm leading-relaxed mb-4">{service.description}</p>
-                      <div className="flex items-center text-xs tracking-widest uppercase text-stone-400">
-                        {service.duration}
+                      <div className="flex items-center justify-between">
+                        <div className="text-xs tracking-widest uppercase text-stone-400">
+                          {service.duration}
+                        </div>
+                        <button
+                          onClick={openSessionBooking}
+                          className="text-[#967BB6] text-sm font-medium border-b border-[#967BB6] hover:text-[#7A5F9F] hover:border-[#7A5F9F] transition-all duration-300 relative group/btn"
+                        >
+                          Book A Session
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#7A5F9F] transition-all duration-300 group-hover/btn:w-full"></span>
+                        </button>
                       </div>
                     </div>
                   ))}

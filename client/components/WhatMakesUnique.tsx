@@ -42,9 +42,10 @@ const WhatMakesUnique: React.FC = () => {
                             return (
                                 <div
                                     key={index}
-                                    className="bg-[#F3F0EB] p-6 rounded-lg border border-stone-200"
+                                    className="bg-[#F3F0EB] p-6 rounded-lg border border-stone-200 transition-all duration-300 hover:shadow-md hover:shadow-stone-300/30 hover:-translate-y-1 hover:border-[#967BB6]/30 group cursor-pointer"
+                                    style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
                                 >
-                                    <h3 className="font-serif text-lg font-semibold text-[#967BB6] mb-2">{feature.title}</h3>
+                                    <h3 className="font-serif text-lg font-semibold text-[#967BB6] mb-2 transition-colors duration-300 group-hover:text-[#7A5F9F]">{feature.title}</h3>
                                     <p className="text-stone-600 text-sm font-light leading-relaxed">{feature.description}</p>
                                 </div>
                             );
@@ -53,14 +54,14 @@ const WhatMakesUnique: React.FC = () => {
                 </div>
 
                 {/* Right: Large Image */}
-                <div className="relative">
+                <div className="relative group">
                     <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
                         <img
                             src="/assets/images/image39.png"
                             alt="Sound healing session"
                             className="w-full h-full object-cover grayscale-[10%]"
                         />
-                        <div className="absolute inset-0 bg-black/5"></div>
+                        <div className="absolute inset-0 bg-black/5 transition-opacity duration-300 group-hover:bg-black/0"></div>
                     </div>
                 </div>
             </div>

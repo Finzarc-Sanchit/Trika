@@ -26,11 +26,12 @@ const WhoBenefits: React.FC = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-white p-6 border border-stone-200 hover:border-stone-300 transition-colors"
+              className="bg-white p-6 border border-stone-200 hover:border-stone-300 transition-all duration-300 hover:shadow-lg hover:shadow-stone-200/50 hover:-translate-y-1 group cursor-pointer"
+              style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
             >
               <div className="flex items-start gap-3">
-                <span className="text-[#967BB6] text-xl mt-1">✦</span>
-                <span className="text-stone-700 font-light text-lg">{benefit}</span>
+                <span className="text-[#967BB6] text-xl mt-1 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12">✦</span>
+                <span className="text-stone-700 font-light text-lg transition-colors duration-300 group-hover:text-[#967BB6]">{benefit}</span>
               </div>
             </div>
           ))}
