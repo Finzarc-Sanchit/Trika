@@ -18,7 +18,7 @@ const services: Service[] = [
     description: 'Targeted sound therapy for specific organs and systems. Works on root cause, not symptom. Ideal for anxiety, depression, PCOS, thyroid, gut issues.',
     duration: '75 Mins',
     price: 0,
-    image: '/assets/images/image25.jpeg',
+    image: '/assets/images/clinical_organ_therapy.jpg',
     category: 'INDIVIDUAL'
   },
   {
@@ -123,7 +123,7 @@ const Services: React.FC<ServicesProps> = ({ openSessionBooking }) => {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {categoryServices.map((service, index) => (
-                    <div 
+                    <div
                       key={service.id}
                       className="group cursor-pointer"
                       style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
