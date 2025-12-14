@@ -47,11 +47,25 @@ const scrollToSection = (href: string) => {
   const element = document.querySelector(href);
   if (element) {
     const navbarHeight = 80;
+    
+    // Update URL hash without triggering scroll
+    window.history.pushState(null, '', href);
+    
+    // Temporarily disable smooth scrolling on html element
+    const html = document.documentElement;
+    const originalScrollBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    
+    // Calculate position and scroll instantly
     const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
     const offsetPosition = elementPosition - navbarHeight;
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'auto'
+    
+    // Use scrollTo with coordinates (instant by default)
+    window.scrollTo(0, offsetPosition);
+    
+    // Restore original scroll behavior
+    requestAnimationFrame(() => {
+      html.style.scrollBehavior = originalScrollBehavior || '';
     });
   }
 };
@@ -108,7 +122,14 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
         <div className="flex-shrink-0 z-[70] relative">
-          <a href="#home" className="flex items-center gap-3 group transition-transform duration-300 hover:scale-105">
+          <a 
+            href="#home" 
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('#home');
+            }}
+            className="flex items-center gap-3 group transition-transform duration-300 hover:scale-105"
+          >
             <img
               src="/assets/images/logo.png"
               alt="Trika Sound Sanctuary Logo"
@@ -126,6 +147,10 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
             <a
               key={item.label}
               href={item.href}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(item.href);
+              }}
               className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-all duration-300 tracking-wide relative group"
             >
               {item.label}
@@ -222,7 +247,11 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, openBooking }) => {
             <a
               key={item.label}
               href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(item.href);
+                setIsMobileMenuOpen(false);
+              }}
               className="text-2xl font-serif text-stone-800 hover:text-[#967BB6] transition-all duration-300 transform hover:scale-105"
             >
               {item.label}
