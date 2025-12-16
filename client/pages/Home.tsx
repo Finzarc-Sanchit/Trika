@@ -10,6 +10,7 @@ import WhoBenefits from '../components/WhoBenefits';
 import WhatMakesUnique from '../components/WhatMakesUnique';
 import TestimonialsSection from '../components/TestimonialsSection';
 import Retreats from '../components/Retreats';
+import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
 import InquiryModal from '../components/InquiryModal';
 import PaymentSessionModal from '../components/PaymentSessionModal';
@@ -32,10 +33,10 @@ const Home: React.FC = () => {
 
   const openInquiry = () => setIsInquiryOpen(true);
   const closeInquiry = () => setIsInquiryOpen(false);
-  
+
   const openSessionBooking = () => setIsSessionBookingOpen(true);
   const closeSessionBooking = () => setIsSessionBookingOpen(false);
-  
+
   const openRetreatBooking = () => setIsRetreatBookingOpen(true);
   const closeRetreatBooking = () => setIsRetreatBookingOpen(false);
 
@@ -53,6 +54,7 @@ const Home: React.FC = () => {
         <WhoBenefits />
         <WhatMakesUnique />
         <TestimonialsSection />
+        <Gallery />
         <Retreats openRetreatBooking={openRetreatBooking} />
       </main>
 
